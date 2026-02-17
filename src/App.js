@@ -33,8 +33,8 @@ function AppRoutes() {
   );
 }
 function App() {
-  // මේකෙන් කරන්නේ GitHub එකේදී repository නම ගන්නවා, 
-  // හැබැයි localhost එකේදී හිස්ව (root) තියාගන්නවා.
+  // This takes the repository name on GitHub,
+  // but leaves it blank (root) on localhost.
   const basename = process.env.NODE_ENV === 'production' ? '/react-project01' : '';
 
   return (
