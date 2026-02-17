@@ -8,7 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 import { AuthProvider, useAuth } from './context/AuthContext';
 
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter  as Router, Route, Routes} from 'react-router-dom';
 
 function AppRoutes() {
   const { checkAuth } = useAuth();
@@ -32,15 +32,17 @@ function AppRoutes() {
     </Routes>
   );
 }
-
 function App() {
+  // මේකෙන් කරන්නේ GitHub එකේදී repository නම ගන්නවා, 
+  // හැබැයි localhost එකේදී හිස්ව (root) තියාගන්නවා.
+  const basename = process.env.NODE_ENV === 'production' ? '/react-project01' : '';
+
   return (
-    <Router>
+    <Router basename={basename}>
       <AuthProvider>
         <AppRoutes />
       </AuthProvider>
     </Router>
   );
 }
-
 export default App;
