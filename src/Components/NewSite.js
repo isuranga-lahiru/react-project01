@@ -1,5 +1,8 @@
 import React from 'react'
 import './newsite.css'
+import { Link } from 'react-router-dom'
+import About from '../Pages/About'
+import Contact from '../Pages/Contact'
 
 export default function NewSite(PROPS) {
     const newlanguage = "Welcome to Home Page.";
@@ -10,15 +13,18 @@ export default function NewSite(PROPS) {
    //const b=20;
    //const c=15;
   //const d=a*b+c;
-  //<span className='text'>{newlanguage} {PROPS.project} using for {PROPS.using} it is {PROPS.newword} purpose</span>
+ 
   return (
     <div>
         <div className="newsite">
            
-            <p className='text'>{newlanguage} {PROPS.project} </p>
+            <h1>{newlanguage}</h1>
+            
             
         </div>
-
+        <Link to="/About">About page</Link>
+                <br/><br/>
+        <Link to="/Contact">Contact page</Link>
     </div>
   )
 }

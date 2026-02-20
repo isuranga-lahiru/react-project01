@@ -1,6 +1,5 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useCallback } from 'react'; 
 
-// Create Auth Context
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -8,7 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [adminUser, setAdminUser] = useState(null);
 
   const login = (userId, password) => {
-    // Demo credentials - replace with real backend authentication
     const validCredentials = {
       email: 'admin@fashionhub.com',
       password: 'Admin@123',
@@ -26,11 +24,9 @@ export const AuthProvider = ({ children }) => {
       
       setAdminUser(userData);
       setIsAuthenticated(true);
-      // Store in localStorage for persistence
       localStorage.setItem('adminAuth', JSON.stringify(userData));
       return { success: true, message: 'Login successful!' };
     }
-    
     return { success: false, message: 'Invalid email or password' };
   };
 
@@ -40,15 +36,18 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('adminAuth');
   };
 
-  // Check if user was previously logged in
-  const checkAuth = () => {
+  // 2. මෙන්න මෙතන තමයි වැදගත්ම වෙනස. checkAuth එක useCallback එකකින් wrap කරනවා.
+  const checkAuth = useCallback(() => {
     const storedAuth = localStorage.getItem('adminAuth');
     if (storedAuth) {
       const userData = JSON.parse(storedAuth);
-      setAdminUser(userData);
-      setIsAuthenticated(true);
+      // මෙතන check එකක් දාමු infinite loop එක නවත්තන්න
+      if (!isAuthenticated) { 
+        setAdminUser(userData);
+        setIsAuthenticated(true);
+      }
     }
-  };
+  }, [isAuthenticated]); // isAuthenticated වෙනස් වුණොත් විතරක් මේ function එක අලුත් වෙයි
 
   return (
     <AuthContext.Provider value={{ 
@@ -63,7 +62,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use auth
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {

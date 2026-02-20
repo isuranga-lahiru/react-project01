@@ -42,9 +42,7 @@ export default function Home() {
         </motion.button>
       </motion.div>
 
-      
-      <NewSite />
-      
+      <NewSite newword="Admin Dashboard"/>
     </main>
   )
 }
