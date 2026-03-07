@@ -322,26 +322,33 @@ boxShadow: {
 ### Framer Motion Usage
 
 **Page Entrance**: 
+{% raw %}
 ```javascript
 initial={{ opacity: 0 }}
 animate={{ opacity: 1 }}
 transition={{ duration: 0.3 }}
 ```
+{% endraw %}
 
 **Card Entrance**:
+{% raw %}
 ```javascript
 initial={{ opacity: 0, y: 20 }}
 animate={{ opacity: 1, y: 0 }}
 transition={{ duration: 0.4 }}
 ```
+{% endraw %}
 
 **Hover Effects**:
+{% raw %}
 ```javascript
 whileHover={{ y: -4, scale: 1.02 }}
 whileTap={{ scale: 0.98 }}
 ```
+{% endraw %}
 
 **Stagger Effect**:
+{% raw %}
 ```javascript
 variants={{ 
   hidden: { opacity: 0 },
@@ -351,6 +358,7 @@ variants={{
   }
 }}
 ```
+{% endraw %}
 
 ---
 
