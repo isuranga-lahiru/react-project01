@@ -204,6 +204,7 @@ All components are optimized for these breakpoints using Tailwind's responsive c
 
 Framer Motion animations can be customized in component files. Example:
 
+{% raw %}
 ```javascript
 <motion.div
   initial={{ opacity: 0, y: 20 }}
@@ -213,6 +214,7 @@ Framer Motion animations can be customized in component files. Example:
   Content
 </motion.div>
 ```
+{% endraw %}
 
 Adjust `duration`, `delay`, and `type` for different effects.
 
